@@ -33,3 +33,20 @@ Backend health check:
 ```sh
 curl http://localhost:3001/api/health
 ```
+
+## Backend API
+
+Seed sample data:
+
+```sh
+curl -X POST http://localhost:3001/api/seed/frontend-jobs
+```
+
+Main endpoints:
+
+- `GET /api/stacks`
+- `POST /api/sources`
+- `POST /api/ingestion-jobs`
+- `GET /api/documents`
+- `GET /api/search?q=React`
+- `GET /api/analytics/stacks`
