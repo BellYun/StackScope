@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { AnalyticsModule } from "./analytics/analytics.module";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { DocumentsModule } from "./documents/documents.module";
@@ -8,7 +9,7 @@ import { SourcesModule } from "./sources/sources.module";
 import { StacksModule } from "./stacks/stacks.module";
 
 @Module({
-  imports: [StacksModule, SourcesModule, DocumentsModule, IngestionModule, SearchModule],
+  imports: [StacksModule, SourcesModule, DocumentsModule, IngestionModule, SearchModule, AnalyticsModule],
   controllers: [AppController],
   providers: [AppService],
 })
