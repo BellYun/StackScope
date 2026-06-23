@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { normalizeText } from "../common/text.util";
 import { TECH_STACKS } from "./stack.data";
+import type { StackMatch } from "./stack-match.entity";
 
 @Injectable()
 export class StacksService {
@@ -21,5 +22,22 @@ export class StacksService {
     }
 
     return stack;
+  }
+
+  findMatches(text: string): StackMatch[] {
+    const normalizedText = normalizeText(text);
+    const matches: StackMatch[] = [];
+
+    for (const stack of TECH_STACKS) {
+      const matchedAlias = stack.aliases.find((alias) => normalizedText.includes(normalizeText(alias)));
+      if (!matchedAlias) continue;
+
+      matches.push({
+        stack,
+        matchedAlias,
+      });
+    }
+
+    return matches;
   }
 }
