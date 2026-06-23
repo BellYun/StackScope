@@ -54,6 +54,13 @@ export class DocumentsService {
       .map((document) => this.withStacks(document));
   }
 
+  search(query: string) {
+    const keyword = normalizeText(query);
+    return this.findAll().filter((document) =>
+      normalizeText(`${document.title} ${document.company ?? ""} ${document.rawText}`).includes(keyword),
+    );
+  }
+
   findMentions() {
     return Array.from(this.mentions.values());
   }
